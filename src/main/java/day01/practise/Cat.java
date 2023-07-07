@@ -31,6 +31,16 @@ public class Cat {
 	public String speak() {
         return "Meow!";
     }
+	
+//	Validations
+	
+	private boolean ageValidator(int age) throws IllegalArgumentException {
+		
+		if(age<=0) {
+			throw new IllegalArgumentException("Age should be gretaer than 0");
+		}
+		return true;
+	}
 
     // Main method to create Dog objects
     public static void main(String[] args) {
