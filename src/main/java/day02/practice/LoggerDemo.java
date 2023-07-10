@@ -1,4 +1,4 @@
-package day02.practise;
+package day02.practice;
 
 public class LoggerDemo {
 public static void main(String[] args) {

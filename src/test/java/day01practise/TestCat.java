@@ -3,7 +3,7 @@ package day01practise;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import day01.practise.Cat;
+import day01.practice.Cat;
 
 
 public class TestCat {

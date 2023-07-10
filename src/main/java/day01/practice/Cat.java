@@ -1,4 +1,4 @@
-package day01.practise;
+package day01.practice;
 
 public class Cat {
     // Attributes
