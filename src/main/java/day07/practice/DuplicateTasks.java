@@ -12,7 +12,7 @@ class Task {
 	private int id;
 	private String name;
 	private LocalDate deadline;
-
+ 
 	Task(String name, int id,String date) {
 
 		this.name = name;
@@ -21,47 +21,59 @@ class Task {
         LocalDate localDate = LocalDate.parse(date);
         this.deadline = localDate;
 	}
-
+ 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+ 
 
 	public LocalDate getDeadline() {
 		return deadline;
 	}
 
-	public void setDeadline(LocalDate deadline) {
-		this.deadline = deadline;
+	public int hashCode() {
+	    return this.getId();
 	}
-
+ 
+	public boolean equals(Object obj) {
+		Task e = null;
+	    if(obj instanceof Task){
+	        e = (Task) obj;
+	    }
+	    if(this.getId() == e.getId()){
+	        return true;
+	    } else {
+	        return false;
+	    }  
+	}
 }
 
+
 public class DuplicateTasks {
-	public static void main(String[] args) {
+	
+	
+	public static HashSet createTask() {
 
 
-
-		List<Task> taskList = new ArrayList<Task>();
+		HashSet<Task> taskList = new HashSet<Task>();
 
 		taskList.add(new Task("Reading", 5,"2023-10-10"));
 		taskList.add(new Task("Writing", 4,"2023-10-10"));
 		taskList.add(new Task("Playing", 10,"2023-10-10"));
 		taskList.add(new Task("Playing", 10,"2023-10-10"));
+		return taskList;
 		
-		HashSet<Task> hash= new HashSet<>(taskList);
-		for(Task t:hash) {
+	}
+	public static void main(String[] args) {
+
+
+		HashSet<Task> taskList = createTask();
+
+		for(Task t:taskList) {
 			System.out.println(t.getName());
 			
 		}
