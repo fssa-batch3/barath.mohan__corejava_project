@@ -2,69 +2,51 @@ package day08.practice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class CommaSeparatedDeptHashMap {
+	private static final Scanner sc = new Scanner(System.in);
+
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-
-		int count = 0;
 		int num = 3;
+		int count=0;
+		HashMap<String, ArrayList<String>> countMap = new HashMap<>();
+		// Sample Inputs
 
-		HashMap<String, ArrayList<String>> countMap = new HashMap<String, ArrayList<String>>();
-
+		// HR,Ram
+		// HR, Suresh
+		// IT, Basker
+		// IT, Joseph
+		// Admin, Sundar
 		while (count < num) {
-			System.out.println("Enter min " + num + " details :");
-
-			// Sample Inputs
-
-			// HR,Ram
-			// HR, Suresh
-			// IT, Basker
-			// IT, Joseph
-			// Admin, Sundar
-
-			String s = sc.nextLine();
-
-			String[] ar = s.split(",");
-
-			int check = 0;
-			for (String deptName : countMap.keySet()) {
-
-				if (ar[0].equals(deptName)) {
-					check = 1;
-				}
-			}
-
-			if (check == 1) {
-
-				ArrayList<String> arr = countMap.get(ar[0]);
-
-				arr.add(ar[1]);
-
-				countMap.put(ar[0], arr);
-			}
-
-			else {
-
-				ArrayList<String> arr = new ArrayList<String>();
-
-				arr.add(ar[1]);
-
-				countMap.put(ar[0], arr);
-
-			}
-
+			System.out.println("Enter at least " + num + " details:");
+			String input = sc.nextLine();
+			processInput(input, countMap);
 			count++;
+		} 
+
+		printDepartmentDetails(countMap);
+	}
+
+	static void processInput(String input, HashMap<String, ArrayList<String>> countMap) {
+		String[] ar = input.split(",");
+		String department = ar[0].trim();
+		String employee = ar[1].trim();
+
+		if (countMap.containsKey(department)) {
+			ArrayList<String> employees = countMap.get(department);
+			employees.add(employee);
+		} else {
+			ArrayList<String> employees = new ArrayList<>();
+			employees.add(employee);
+			countMap.put(department, employees);
 		}
+	}
 
-		System.out.println(countMap.keySet());
-
-		for (String n : countMap.keySet()) {
-
-			System.out.println(n + " : " + countMap.get(n));
-
+	static void printDepartmentDetails(HashMap<String, ArrayList<String>> countMap) {
+		System.out.print("Departments: " + countMap.keySet()+"\n");
+		for (String department : countMap.keySet()) {
+			System.out.print(department + " : " + countMap.get(department)+"\n");
 		}
 	}
 }

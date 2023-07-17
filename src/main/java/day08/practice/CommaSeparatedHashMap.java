@@ -2,30 +2,37 @@ package day08.practice;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class CommaSeparatedHashMap {
-public static void main(String[] args) {
-	Scanner sc = new Scanner(System.in);
-	String s= sc.nextLine();//Ram,Ram,Superman,Spider,hey,hello,hey,Spider
-	String[] ar = s.split(",");
-	HashMap<String, Integer> countMap= new HashMap<String, Integer>();
-	for(int i=0;i<ar.length;i++) {
-		if(countMap.get(ar[i])==null) {	
-			countMap.put(ar[i],1);
-	
-		}
-		else {
-			int count=countMap.get(ar[i]);
-			countMap.put(ar[i],count+1);
-	
-		}
-		
-	}
 
-	for(String n:countMap.keySet()) {
-		System.out.println(n+" : "+countMap.get(n));
-	
-		
-	}
-}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the names:");
+        String s = sc.nextLine(); //Ram,Ram,Superman,Spider,hey,hello,hey,Spider
+        String[] ar = s.split(",");
+        TreeMap<String, Integer> countMap = createCountMap(ar);
+        printCountMap(countMap);
+    }
+
+    public static TreeMap<String, Integer> createCountMap(String[] arr) {
+        TreeMap<String, Integer> countMap = new TreeMap<>();
+
+        for (String item : arr) {
+            if (countMap.get(item) == null) {
+                countMap.put(item, 1);
+            } else {
+                int count = countMap.get(item);
+                countMap.put(item, count + 1);
+            }
+        }
+
+        return countMap;
+    }
+
+    public static void printCountMap(TreeMap<String, Integer> countMap) {
+        for (String item : countMap.keySet()) {
+            System.out.print(item + " : " + countMap.get(item)+"\n");
+        }
+    }
 }
