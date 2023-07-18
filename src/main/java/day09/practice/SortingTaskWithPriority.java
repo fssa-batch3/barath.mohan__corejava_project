@@ -8,7 +8,7 @@ import java.util.Collections;
 class Task1 implements Comparable<Task1> {
 	private int id;
 	private String name;
-	private LocalDate deadline;
+	private LocalDate deadline; 
 	private int priority;
 
 	Task1(int id, String name, String deadline, int priority) {
@@ -29,8 +29,8 @@ class Task1 implements Comparable<Task1> {
 				return 0;
 			} else if (this.priority > t.priority) {
 				return -1;
-			} else {
-				return 1;
+			} else { 
+				return 1; 
 			}
 
 		} else if (deadline.compareTo(t.deadline) > 0) {
