@@ -40,7 +40,7 @@ public int compareTo(Task t){
 
 public class SortingTask {
 	 
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 		
 		ArrayList<Task> taskArray= new ArrayList<Task>();
 		taskArray.add(new Task(3,"Coding","2022-10-22"));

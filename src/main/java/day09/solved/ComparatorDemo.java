@@ -5,10 +5,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
-/**
- * 
- */
-
 class Student {
 	int rollno;
 	String name;
@@ -24,6 +20,7 @@ class Student {
 /**
  * Comparator to compare each student object by their Age
  */
+
 class AgeComparator implements Comparator<Student> {
 	public int compare(Student s1, Student s2) {
 		if (s1.age == s2.age)
@@ -44,9 +41,6 @@ class NameComparator implements Comparator<Student> {
 	}
 }
 
-/**
- * 
- */
 public class ComparatorDemo {
 	public static void main(String args[]) {
  
@@ -63,7 +57,7 @@ public class ComparatorDemo {
 		Iterator<Student> itr2 = al.iterator();
 		
 		while (itr2.hasNext()) {
-			Student st = itr2.next();
+			Student st = itr2.next(); 
 			System.out.println(st.rollno + " " + st.name + " " + st.age);
 		}
 
