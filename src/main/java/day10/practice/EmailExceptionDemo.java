@@ -5,11 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class InvalidEmailException extends Exception {
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -8105491977357554060L;
-	
+
 	public InvalidEmailException(String msg) {
 		super(msg); 
 	}
@@ -17,9 +13,12 @@ class InvalidEmailException extends Exception {
 		super(te);
 	}
 	public InvalidEmailException(String msg, Throwable te) {
+		
 		super(msg, te);
+		System.out.println("tyuygf");
 	}
 } 
+
 class EmailValidator {
 	public static boolean validEmail(String emailId) throws InvalidEmailException {
 		if (emailId == null) {
@@ -39,7 +38,7 @@ class EmailValidator {
 }
 public class EmailExceptionDemo {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvalidEmailException {
 		Scanner scan = new Scanner(System.in);
 		
 		System.out.println("Enter your email");
@@ -48,9 +47,10 @@ public class EmailExceptionDemo {
 		try {
 			
 			EmailValidator.validEmail(email);
-			
+			 
 		} catch (InvalidEmailException e) {
 			e.printStackTrace();
+			
 		}
 	}
 }

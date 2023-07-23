@@ -25,6 +25,7 @@ public class ArrayListCrud {
 
 		// Changing the element at 1 as Kolkata
 		cityList.set(1, "Kolkata");
+		System.out.println(cityList);
 
 		// Reading the element at index 1 again
 		elementAtOne = cityList.get(1);

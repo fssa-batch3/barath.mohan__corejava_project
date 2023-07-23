@@ -1,7 +1,5 @@
 package day06.solved;
 
-
-
 import java.util.ArrayList;
 
 public class TestArrayList {

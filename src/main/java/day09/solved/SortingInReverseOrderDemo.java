@@ -27,5 +27,5 @@ public class SortingInReverseOrderDemo {
 		System.out.println("Before Sorting in reverse: " + deptNames);
 		Collections.sort(deptNames2, Collections.reverseOrder());
 		System.out.println("Reverse in reverse Order:" + deptNames2);
-	}
+	} 
 }

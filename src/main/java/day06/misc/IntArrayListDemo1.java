@@ -10,7 +10,6 @@ public class IntArrayListDemo1 {
 	public static void main(String[] args) {
 		Integer[] arr = {3,4,5,6};
 		List<Integer> arrInt = new ArrayList<>(Arrays.asList(arr));
-//		List<Integer> arrInt = new ArrayList<>(Arrays.asList(arr));
 		System.out.println(arrInt);
 		arrInt.remove(Integer.valueOf(3));
 		System.out.println(arrInt);

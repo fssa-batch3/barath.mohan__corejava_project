@@ -36,17 +36,18 @@ class Task {
 	}
 
 	public int hashCode() {
-	    return this.getId();
+	    return this.getId(); 
 	}
  
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) { 
 		Task e = null;
 	    if(obj instanceof Task){
 	        e = (Task) obj;
 	    }
-	    if(this.getId() == e.getId()){
+	    
+	    if(this.getId() == e.getId()){ 
 	        return true;
-	    } else {
+	    } else { 
 	        return false;
 	    }  
 	}
@@ -62,7 +63,7 @@ public class DuplicateTasks {
 		HashSet<Task> taskList = new HashSet<Task>();
 
 		taskList.add(new Task("Reading", 5,"2023-10-10"));
-		taskList.add(new Task("Writing", 4,"2023-10-10"));
+		taskList.add(new Task("Writing", 4,"2023-10-10")); 
 		taskList.add(new Task("Playing", 10,"2023-10-10"));
 		taskList.add(new Task("Playing", 10,"2023-10-10"));
 		return taskList;

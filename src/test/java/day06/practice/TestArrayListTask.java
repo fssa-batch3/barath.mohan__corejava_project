@@ -28,16 +28,16 @@ public class TestArrayListTask {
         List<Task> taskList = ArrayListTask.createTaskList();
 
         // Ensure that the taskList contains the expected tasks with the correct priorities
-        assertEquals("Reading", taskList.get(0).taskName);
+        assertEquals("Reading", taskList.get(0).name);
         assertEquals(5, taskList.get(0).priority);
 
-        assertEquals("Writing", taskList.get(1).taskName);
+        assertEquals("Writing", taskList.get(1).name);
         assertEquals(4, taskList.get(1).priority);
 
-        assertEquals("Playing", taskList.get(2).taskName);
+        assertEquals("Playing", taskList.get(2).name);
         assertEquals(10, taskList.get(2).priority);
 
-        assertEquals("Gaming", taskList.get(3).taskName);
+        assertEquals("Gaming", taskList.get(3).name);
         assertEquals(10, taskList.get(3).priority);
     }
 

@@ -14,5 +14,5 @@ public class ArrayListTask {
         taskList.add(new Task("Gaming", 10));
         return taskList;
     } 
-    // Other methods in the ArrayListTask class, if any...
+    
 }
