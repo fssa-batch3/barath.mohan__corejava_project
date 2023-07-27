@@ -17,7 +17,7 @@ class InvalidEmailException extends Exception {
 		super(msg, te);
 		System.out.println("tyuygf");
 	}
-} 
+}  
 
 class EmailValidator {
 	public static boolean validEmail(String emailId) throws InvalidEmailException {
@@ -54,3 +54,12 @@ public class EmailExceptionDemo {
 		}
 	}
 }
+
+
+
+
+
+
+
+
+

@@ -28,8 +28,8 @@ public class SortedList {
 public static void main(String[] args) {
 	
 	ArrayList<Integer> arr= SortedList.getInputValues(5);
-	System.out.println("Before Sorting :"+arr);
-	Collections.sort(arr);
+	System.out.println("Before Sorting :"+arr); 
+	Collections.sort(arr); 
 	System.out.println("After Sorting :"+arr);
 }
 }

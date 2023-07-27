@@ -10,13 +10,13 @@ import java.util.ArrayList;
 
 public class AddingTaskInDB {
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException { 
 		
 		Task task1= new Task(100,"Reading",true);
 		Task task2= new Task(101,"Running",true);
 		Task task3= new Task(102,"Walking",true);
 		
-		ArrayList<Task> tasks= new ArrayList<Task>();
+		ArrayList<Task> tasks= new ArrayList<Task>(); 
 		tasks.add(task1);
 		tasks.add(task2);
 		tasks.add(task3);

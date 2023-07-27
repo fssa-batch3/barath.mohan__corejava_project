@@ -28,9 +28,9 @@ class Task1 implements Comparable<Task1> {
 			if (this.priority == t.priority) {
 				return 0;
 			} else if (this.priority > t.priority) {
-				return -1;
+				return 1;
 			} else { 
-				return 1; 
+				return -1; 
 			}
 
 		} else if (deadline.compareTo(t.deadline) > 0) {

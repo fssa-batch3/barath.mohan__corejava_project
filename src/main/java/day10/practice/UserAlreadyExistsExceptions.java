@@ -6,47 +6,20 @@ class UserAlreadyExistsException extends RuntimeException {
 	public UserAlreadyExistsException(String msg) {
 		super(msg);
 	}
-	public UserAlreadyExistsException(Throwable te) {
-		super(te);
-	}
-	public UserAlreadyExistsException(String msg, Throwable te) {
-		super(msg, te);
-	}
+//	public UserAlreadyExistsException(Throwable te) {
+//		super(te);
+//	}
+//	public UserAlreadyExistsException(String msg, Throwable te) {
+//		super(msg, te);
+//	}
 }
-class User {
-	int id;
-	String name;
-	String emailId;
-	public User(int id, String name, String emailId) {
-		this.id = id;
-		this.name = name;
-		this.emailId = emailId;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getEmailId() {
-		return emailId;
-	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-}
+
 class UserValidator {
 	
 	static ArrayList<User> arr = new ArrayList<User>();
 	public static boolean register(User user) throws UserAlreadyExistsException {
 		
-		if (user == null) {
+		if (user == null) { 
 			throw new UserAlreadyExistsException("User Object Cannot be Null");
 		}
 		for (User element : arr) {

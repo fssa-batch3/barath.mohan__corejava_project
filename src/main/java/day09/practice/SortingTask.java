@@ -31,6 +31,8 @@ public int compareTo(Task t){
 	 
   }
   
+  
+  @Override 
   public String toString(){
 	  
 	  String out = "Task id : "+this.id+" || Task name : "+this.name+" || Task DeadLine :"+deadline+"\n";
