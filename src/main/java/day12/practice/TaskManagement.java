@@ -11,108 +11,78 @@ import java.util.List;
 
 import day11.practice.Task;
 
+class DBConnection {
+    static final String DB_URL = "jdbc:mysql://urt9p8hqgjhtscaf:t6YMvvnZUcUMvPWWIBeU@bagyxb4r4ehqw2ijgble-mysql.services.clever-cloud.com:3306/bagyxb4r4ehqw2ijgble";
+    static final String DB_USER = "urt9p8hqgjhtscaf";
+    static final String DB_PASSWORD = "t6YMvvnZUcUMvPWWIBeU";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+    }
+}
 class TaskDAO {
-	public void createTask(Task task) {
+    private Connection getConnection() throws SQLException {
+        return DBConnection.getConnection();
+    }
 
-		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://urt9p8hqgjhtscaf:t6YMvvnZUcUMvPWWIBeU@bagyxb4r4ehqw2ijgble-mysql.services.clever-cloud.com:3306/bagyxb4r4ehqw2ijgble", "urt9p8hqgjhtscaf", "t6YMvvnZUcUMvPWWIBeU");
+    public void createTask(Task task) {
+        try (Connection con = getConnection()) {
+            String query = "INSERT INTO task_details(task_id, task_name, status) VALUES(?, ?, ?)";
+            PreparedStatement psmt = con.prepareStatement(query);
+            psmt.setInt(1, task.id);
+            psmt.setString(2, task.name);
+            psmt.setInt(3, task.status ? 1 : 0);
 
-			String query = "INSERT INTO task_details(task_id,task_name,status) VALUES(?,?,?)";
-			PreparedStatement psmt = con.prepareStatement(query);
-		
-			psmt.setString(1, task.id + "");
-			psmt.setString(2, task.name);
-			psmt.setString(3, task.status ? 1 + "" : 0 + "");
+            int num = psmt.executeUpdate();
+            System.out.println("affected row/rows :" + num);
+        } catch (SQLException e) {
+            System.out.println("Creating task failed");
+        }
+    }
 
-			int num = psmt.executeUpdate();
-			System.out.println("affected row/rows :" + num);
+    public void updateTask(Task task) {
+        try (Connection con = getConnection()) {
+            String query = "UPDATE task_details SET task_name = ? WHERE task_id = ?";
+            PreparedStatement psmt = con.prepareStatement(query);
+            psmt.setString(1, task.name);
+            psmt.setInt(2, task.id);
 
-			psmt.close();
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("Creating task failed");
-			
-		}
+            int num = psmt.executeUpdate();
+            System.out.println("affected row/rows :" + num);
+        } catch (SQLException e) {
+            System.out.println("Updating task failed");
+        }
+    }
 
-	}
+    public void deleteTask(int taskId) {
+        try (Connection con = getConnection()) {
+            String query = "DELETE FROM task_details WHERE task_id = ?";
+            PreparedStatement psmt = con.prepareStatement(query);
+            psmt.setInt(1, taskId);
 
-	public void updateTask(Task task) {
+            int num = psmt.executeUpdate();
+            System.out.println("affected row/rows :" + num);
+        } catch (SQLException e) {
+            System.out.println("Delete task failed");
+        }
+    }
 
-		try {
-			int id=task.id;
-//			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tasks", "root", "123456");
-			Connection con = DriverManager.getConnection("jdbc:mysql://urt9p8hqgjhtscaf:t6YMvvnZUcUMvPWWIBeU@bagyxb4r4ehqw2ijgble-mysql.services.clever-cloud.com:3306/bagyxb4r4ehqw2ijgble", "urt9p8hqgjhtscaf", "t6YMvvnZUcUMvPWWIBeU");
-			String query = "UPDATE task_details "
-					+ "SET task_name =? "
-					+ "WHERE task_id = ?";
-			PreparedStatement psmt = con.prepareStatement(query);
-			psmt.setString(2, task.id + "");
-			psmt.setString(1, task.name);
-			
-			int num = psmt.executeUpdate();
-			System.out.println("affected row/rows :" + num);
-			psmt.close();
-			con.close();
+    public List<Task> getAllTasks() {
+        try (Connection con = getConnection()) {
+            String query = "SELECT * FROM task_details";
+            Statement smt = con.createStatement();
+            ResultSet rs = smt.executeQuery(query);
+            ArrayList<Task> tasks = new ArrayList<>();
 
-		} catch (SQLException e) {
-			System.out.println("Updating task failed");
-
-		}
-
-	}
-
-	public void deleteTask(int taskId)  {
-	
-	try {
-//		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/tasks","root","123456");
-		Connection con = DriverManager.getConnection("jdbc:mysql://urt9p8hqgjhtscaf:t6YMvvnZUcUMvPWWIBeU@bagyxb4r4ehqw2ijgble-mysql.services.clever-cloud.com:3306/bagyxb4r4ehqw2ijgble", "urt9p8hqgjhtscaf", "t6YMvvnZUcUMvPWWIBeU");
-		String query ="DELETE FROM task_details WHERE task_id= ? ";
-		PreparedStatement psmt = con.prepareStatement(query);
-		psmt.setString(1, taskId + "");
-		int num = psmt.executeUpdate();
-		System.out.println("affected row/rows :" + num);
-		psmt.close();
-		con.close();
-		
-	} catch (SQLException e) {
-		System.out.println("Delete task failed"); 
-	}
-	
-		
-	}
-//	
-	public List<Task> getAllTasks()  {
-	
-	try {
-//		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tasks","root","123456");
-		Connection con = DriverManager.getConnection("jdbc:mysql://urt9p8hqgjhtscaf:t6YMvvnZUcUMvPWWIBeU@bagyxb4r4ehqw2ijgble-mysql.services.clever-cloud.com:3306/bagyxb4r4ehqw2ijgble", "urt9p8hqgjhtscaf", "t6YMvvnZUcUMvPWWIBeU");
-		
-		
-	String query ="SELECT * FROM task_details";
-	
-	Statement smt = con.createStatement();
-	
-	ResultSet rs= smt.executeQuery(query);
-	
-	ArrayList<Task> tasks= new ArrayList<Task>();
-
-	
-	while(rs.next()) {
-//		System.out.println();
-		tasks.add(new Task(Integer.parseInt(rs.getString("task_id")),rs.getString("task_name"),Integer.parseInt(rs.getString("status"))==1?true:false));
-		System.out.println(rs.getString(1));
-	} 
-
-	
-	return tasks;
-	
-	} catch (SQLException e) {
-		System.out.println("Getting all list details failed");
-	}
-	return null;
-
-	}
-
+            while (rs.next()) {
+                tasks.add(new Task(rs.getInt("task_id"), rs.getString("task_name"), rs.getInt("status") == 1));
+            } 
+            return tasks;
+        } catch (SQLException e) {
+            System.out.println("Getting all list details failed");
+        }
+        return null;
+    }
 }
 
 public class TaskManagement {
@@ -122,24 +92,24 @@ public class TaskManagement {
 		Task task1 = new Task(200, "Gym", true);
 		Task task2 = new Task(201, "Jogging", true);
 		Task task3 = new Task(201, "Sports", true);
-		
+
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://urt9p8hqgjhtscaf:t6YMvvnZUcUMvPWWIBeU@bagyxb4r4ehqw2ijgble-mysql.services.clever-cloud.com:3306/bagyxb4r4ehqw2ijgble", "urt9p8hqgjhtscaf", "t6YMvvnZUcUMvPWWIBeU");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://urt9p8hqgjhtscaf:t6YMvvnZUcUMvPWWIBeU@bagyxb4r4ehqw2ijgble-mysql.services.clever-cloud.com:3306/bagyxb4r4ehqw2ijgble",
+					"urt9p8hqgjhtscaf", "t6YMvvnZUcUMvPWWIBeU");
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
 		}
-		
+
 		TaskDAO taskDAO = new TaskDAO();
 		taskDAO.createTask(task1);
 		taskDAO.createTask(task2);
 		taskDAO.updateTask(task3);
 		taskDAO.deleteTask(201);
 		taskDAO.deleteTask(200);
-		
+
 		System.out.println(taskDAO.getAllTasks());
-		
-		
 
 	}
 }
